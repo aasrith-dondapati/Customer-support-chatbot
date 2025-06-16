@@ -33,7 +33,7 @@ Create and activate a Python virtual environment:
 python -m venv chatbot_env
 source chatbot_env/bin/activate 
 
-# Windows: .\chatbot_env\Scripts\activate
+Windows: .\chatbot_env\Scripts\activate
 
 2. Install Dependencies
 
