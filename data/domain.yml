@@ -1,0 +1,64 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy 
+  - ask_faq_shipping
+  - escalate_issue
+  - provide_order_number
+
+entities:
+  - order_number
+
+slots:
+  order_number:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: order_number
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_faq_shipping:
+  - text: "Shipping usually takes 3-5 business days. Do you have an order number?"
+
+  utter_ask_order_number:
+  - text: "Please provide your order number."
+
+  utter_escalate_to_human:
+  - text: "I'm connecting you to a human agent now. Please hold."
+
+actions:
+  - utter_greet
+  - utter_faq_shipping
+  - utter_ask_order_number
+  - utter_escalate_to_human
+  - action_lookup_order_status # Custom action
+  - action_escalate_issue_to_crm # Another custom action
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
